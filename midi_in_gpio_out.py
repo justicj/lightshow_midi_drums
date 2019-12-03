@@ -6,16 +6,10 @@ from time import sleep
 pygame.init()
 pygame.midi.init()
 
-# list all midi devices
-for x in range( 0, pygame.midi.get_count() ):
-    print(pygame.midi.get_device_info(x))
-'''
-(b'MMSystem', b'Microsoft MIDI Mapper', 0, 1, 0)
-(b'MMSystem', b'Alesis DM6', 1, 0, 0)
-(b'MMSystem', b'Microsoft GS Wavetable Synth', 0, 1, 0)
-(b'MMSystem', b'Alesis DM6', 0, 1, 0)
-'''
+# variables
 apiaddress = '192.168.1.219:8080'
+apitimeout = 0.001
+gpiodelay = 0.1
 snare = [201, 81, 0, 0]
 tom = [153, 22, 0, 0]
 tom_medium = [153, 23, 0, 0]
@@ -24,6 +18,10 @@ hi_hat = [201, 85, 0, 0]
 crash = [201, 83, 0, 0]
 ride = [201, 84, 0, 0]
 bass = [201, 80, 0, 0]
+
+# list all midi devices
+for x in range( 0, pygame.midi.get_count() ):
+    print(pygame.midi.get_device_info(x))
 # open a specific midi device
 inp = pygame.midi.Input(1)
 
@@ -31,16 +29,16 @@ def sendtoapi(url, gpio):
     urlon = 'http://' + url + '/' + str(gpio) + '/true'
     urloff = 'http://' + url + '/' + str(gpio) + '/false'
     try:
-        r = requests.get(urlon, timeout=0.001)
+        r = requests.get(urlon, timeout=apitimeout)
     except requests.exceptions.ReadTimeout:
         print('Turning on, didnt make it to the api')
     except requests.exceptions.ConnectionError:
         print('Turning on, didnt make it to the api')
     except:
         raise
-    sleep(0.1)
+    sleep(gpiodelay)
     try:
-        r = requests.get(urloff, timeout=0.001)
+        r = requests.get(urloff, timeout=apitimeout)
     except requests.exceptions.ReadTimeout:
         print('Turning off, didnt make it to the api')
     except requests.exceptions.ConnectionError:
