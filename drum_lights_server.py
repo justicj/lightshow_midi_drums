@@ -1,4 +1,4 @@
-#!/usr/bin/env python3.5
+#! /usr/bin/python3
 
 # The GPIO's you want to control, in BCM numbers
 GPIO_LIST = [4, 17, 18, 22, 23, 24, 25, 27,]
@@ -54,4 +54,3 @@ except KeyboardInterrupt:
     pass
 finally:
     GPIO.cleanup()
-
