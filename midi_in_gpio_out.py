@@ -57,7 +57,7 @@ def listentrigger():
             midi_out = inp.read(1000)
             # print(midi_out)
             if any(snare in x for x in midi_out):
-                sendtoapi(apiaddress, 4)
+                sendtoapi(apiaddress, 22)
                 print('Snare')
             elif any(tom in x for x in midi_out):
                 sendtoapi(apiaddress, 27)
@@ -66,7 +66,7 @@ def listentrigger():
                 sendtoapi(apiaddress, 18)
                 print('Tom Medium')
             elif any(hi_hat in x for x in midi_out):
-                sendtoapi(apiaddress, 22)
+                sendtoapi(apiaddress, 4)
                 print('Hit-Hat')
             elif any(tom_floor in x for x in midi_out):
                 sendtoapi(apiaddress, 23)
