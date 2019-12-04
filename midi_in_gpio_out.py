@@ -60,7 +60,7 @@ def listentrigger():
                 sendtoapi(apiaddress, 4)
                 print('Snare')
             elif any(tom in x for x in midi_out):
-                sendtoapi(apiaddress, 17)
+                sendtoapi(apiaddress, 27)
                 print('Tom')
             elif any(tom_medium in x for x in midi_out):
                 sendtoapi(apiaddress, 18)
@@ -78,7 +78,7 @@ def listentrigger():
                 sendtoapi(apiaddress, 25)
                 print('Ride')
             elif any(bass in x for x in midi_out):
-                sendtoapi(apiaddress, 27)
+                sendtoapi(apiaddress, 17)
                 print('Bass')
         # wait 10ms - this is arbitrary, but wait(0) still resulted
         # in 100% cpu utilization
